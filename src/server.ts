@@ -16,7 +16,7 @@ initDB()
 
 app.use(express.json())
 app.get("/", logger, (req: Request, res: Response) => {
-  res.send("Hello Next Level Developers!");
+  res.send("Here show Vehicle Rental System!");
 });
 
 //users CRUD

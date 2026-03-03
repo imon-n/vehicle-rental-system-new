@@ -41,7 +41,7 @@ const signinUser= async (email: string, password: string) => {
       expiresIn: "7d",
     }
   );
-  console.log({ token });
+ 
 
    const { password: _, ...userWithoutPassword } = user;
 
