@@ -9,8 +9,8 @@ Built with **Node.js, Express, TypeScript, and PostgreSQL** with JWT authenticat
 
 ##  Live Demo
 
-- Live Server: [https://your-live-url.com](https://your-live-url.com)  
-- API Base URL: [https://your-live-url.com/api/v1](https://your-live-url.com/api/v1)  
+- Live Server: [https://your-live-url.com](https://vercel-rental-system-new.vercel.app/)  
+ 
 
 *(Replace with your deployed URL)*
 
@@ -46,7 +46,7 @@ Built with **Node.js, Express, TypeScript, and PostgreSQL** with JWT authenticat
 
 ---
 
-## 🛠 Technology Stack
+##  Technology Stack
 
 - **Backend:** Node.js, Express.js, TypeScript  
 - **Database:** PostgreSQL  
