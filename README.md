@@ -9,7 +9,7 @@ Built with **Node.js, Express, TypeScript, and PostgreSQL** with JWT authenticat
 
 ##  Live Demo
 
-- Live Server: [https://your-live-url.com](https://vercel-rental-system-new.vercel.app/)  
+Check out the live application here: [https://vercel-rental-system-new.vercel.app/](https://vercel-rental-system-new.vercel.app/)
  
 
 *(Replace with your deployed URL)*
