@@ -19,14 +19,55 @@ try{
 export const getBookings = async(req:any,res:Response)=>{
 try{
     const bookings = await bookingService.getBookings(req.user);
-    res.status(200).json({
+
+if(req.user.role==="admin"){
+    const fromdata = bookings.map((row:any)=>({
+        id: row.id,
+        customer_id:row.customer_id,
+        vehicle_id:row.vehicle_id,
+        rent_start_date:row.rent_start_date.toISOString().split("T")[0],
+        rent_end_date:row.rent_end_date.toISOString().split("T")[0],
+        total_price:Number(row.total_price),
+        status:row.status,
+        customer:{
+            name:row.name,
+            email:row.email,
+        },
+        vehicle:{
+            vehicle_name:row.vehicle_name,
+            registration_number:row.registration_number,
+        },
+        
+    }))
+      res.status(200).json({
         success:true,
-        message:
-        req.user.role === "admin"
-        ? "Bookings retrieved successfully"
-        : "Your bookings retrieved successfully",
-        data: bookings,});
-}catch(err:any){
+        message:"Bookings retrieved successfully",
+        data: fromdata,});
+}
+   const fromdata = bookings.map((row:any)=>({
+        id: row.id,
+        customer_id:row.customer_id,
+        vehicle_id:row.vehicle_id,
+        rent_start_date:row.rent_start_date.toISOString().split("T")[0],
+        rent_end_date:row.rent_end_date.toISOString().split("T")[0],
+        total_price:Number(row.total_price),
+        status:row.status,
+        customer:{
+            name:row.name,
+            email:row.email,
+        },
+        vehicle:{
+            vehicle_name:row.vehicle_name,
+            registration_number:row.registration_number,
+        },
+        
+    }))
+     res.status(200).json({
+        success:true,
+        message:"Bookings retrieved successfully",
+        data: fromdata,});
+}
+  catch(err:any){
     res.status(400).json({success:false,
         message:err.message,
     errors:err.message,});

@@ -48,7 +48,7 @@ const deleteUser = async(userId:number)=>{
     `select count(*) from bookings where customer_id=$1 AND status='active'`,
     [userId]
   );
-  if(Number(bookingCheck.rows.length>0)){
+  if(Number(bookingCheck.rows[0].count>0)){
     throw new Error("Cannot delete user: Active bookings exist");
   }
   const result = await pool.query(

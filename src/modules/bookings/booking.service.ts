@@ -26,8 +26,8 @@ if(days<=0){
 const total_price = days*vehicle.daily_rent_price;
 const bookingRes = await pool.query(
     `
-    insert into bookings(customer_id,vehicle_id,rent_start_date,rent_end_date,total_price)
-    values($1,$2,$3,$4,$5) returning *`,
+    insert into bookings(customer_id,vehicle_id,rent_start_date,rent_end_date,total_price, status)
+    values($1,$2,$3,$4,$5, 'active') returning *`,
     [user.id,vehicle.id,rent_start_date,rent_end_date,total_price]
 );
 await pool.query(
@@ -35,7 +35,15 @@ await pool.query(
 update vehicles set availability_status='booked' where id = $1`,
 [vehicle_id]
 )
-return {...bookingRes.rows[0],
+  const booking = bookingRes.rows[0];
+return {
+     id: booking.id,
+    customer_id: booking.customer_id,
+    vehicle_id: booking.vehicle_id,
+    rent_start_date: booking.rent_start_date.toISOString().split("T")[0],
+    rent_end_date: booking.rent_end_date.toISOString().split("T")[0],
+    total_price: Number(booking.total_price),
+    status: booking.status,
 vehicle:{
     vehicle_name:vehicle.vehicle_name,
     daily_rent_price:vehicle.daily_rent_price,
@@ -92,6 +100,8 @@ export const updateBooking = async(
     bookingId:number,
     payload:any
 )=>{
+      const {status} = payload; 
+      console.log(status)
     const bookingRes = await pool.query(
         `
         select * from bookings where id = $1`,
@@ -102,7 +112,7 @@ export const updateBooking = async(
     }
     const booking = bookingRes.rows[0];
     console.log(booking.vehicle_id,bookingId)
-    if(user.role === 'customer'){
+    if(user.role === 'customer' && status === "cancelled"){
         if(booking.customer_id!==user.id){
             throw new Error("Not authorized");
         }
@@ -115,7 +125,7 @@ export const updateBooking = async(
 
     const updated = await pool.query(
         `
-        update bookings set status='cancelled' where id=$1`,
+        update bookings set status='cancelled' where id=$1 returning *`,
         [bookingId]
     );
 
@@ -126,10 +136,10 @@ export const updateBooking = async(
     );
     return updated.rows[0];
     }
-    if(user.role === "admin"){
+    if(user.role === "admin" && status === "returned"){
       const updated = await pool.query(
             `
-            update bookings set status = 'returned' where id=$1`,
+            update bookings set status = 'returned' where id=$1 returning *`,
             [bookingId]
         );
 
