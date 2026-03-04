@@ -3,12 +3,7 @@
 
 
 A RESTful backend API for managing vehicle rentals, bookings, and users.  
-
-
 ---
-
-
-
 ##  Features
 
 ###  Authentication & Authorization
