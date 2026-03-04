@@ -3,7 +3,7 @@
 
 
 A RESTful backend API for managing vehicle rentals, bookings, and users.  
-Built with **Node.js, Express, TypeScript, and PostgreSQL** with JWT authentication and role-based access.
+Built with **Node.js, Express, TypeScript** with JWT authentication and role-based access.
 
 ---
 
