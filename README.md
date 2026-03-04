@@ -1,6 +1,6 @@
-# 🚗 Vehicle Rental System API
+# Vehicle Rental System API
 
-[![Node.js](https://img.shields.io/badge/Node.js-14.x-green)](https://nodejs.org/)  
+[!(https://img.shields.io/badge/Node.js-14.x-green)](https://nodejs.org/)  
 [![Express](https://img.shields.io/badge/Express.js-4.x-blue)](https://expressjs.com/)  
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blueviolet)](https://www.typescriptlang.org/)  
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15.x-blue)](https://www.postgresql.org/)
